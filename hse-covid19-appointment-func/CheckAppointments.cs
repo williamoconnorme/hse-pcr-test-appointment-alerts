@@ -182,7 +182,7 @@ namespace hse_covid19_appointment_func
         [FunctionName("Meath")]
         public async Task RunMeathAsync([TimerTrigger("*/10 * * * * *")] TimerInfo myTimer, ILogger log)
         {
-            long telegramChatId = -1001734558378;
+            long telegramChatId = -1001381199577;
             string countyUuid = "3d3136b7-8893-4226-9f28-d06967022123";
             dynamic facilities = JsonConvert.DeserializeObject(GetCountyFacilities(countyUuid));
             facilities = facilities["data"];
