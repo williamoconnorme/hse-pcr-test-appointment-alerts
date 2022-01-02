@@ -23,7 +23,7 @@ namespace hse_covid19_appointment_func
             string countyUuid = "ed18c9cd-be86-44fb-86ba-8c54d55a2faa";
             dynamic facilities = JsonConvert.DeserializeObject(GetCountyFacilities(countyUuid));
             facilities = facilities["data"];
-            SendAppointments(facilities, telegramChatId, log);
+            SendAppointments(facilities, telegramChatId);
         }
 
         [FunctionName("Cavan")]
@@ -33,7 +33,7 @@ namespace hse_covid19_appointment_func
             string countyUuid = "962520d3-8dc0-42e4-811b-b3225d74addb";
             dynamic facilities = JsonConvert.DeserializeObject(GetCountyFacilities(countyUuid));
             facilities = facilities["data"];
-            SendAppointments(facilities, telegramChatId, log);
+            SendAppointments(facilities, telegramChatId);
         }
 
         [FunctionName("Clare")]
@@ -43,7 +43,7 @@ namespace hse_covid19_appointment_func
             string countyUuid = "69111ae8-fb94-4151-b4ec-fd4ce0f605e5";
             dynamic facilities = JsonConvert.DeserializeObject(GetCountyFacilities(countyUuid));
             facilities = facilities["data"];
-            SendAppointments(facilities, telegramChatId, log);
+            SendAppointments(facilities, telegramChatId);
         }
 
         [FunctionName("Cork")]
@@ -53,7 +53,7 @@ namespace hse_covid19_appointment_func
             string countyUuid = "88d1ac9e-f531-4b7a-a6d5-499e84ed4463";
             dynamic facilities = JsonConvert.DeserializeObject(GetCountyFacilities(countyUuid));
             facilities = facilities["data"];
-            SendAppointments(facilities, telegramChatId, log);
+            SendAppointments(facilities, telegramChatId);
         }
 
         [FunctionName("Donegal")]
@@ -63,7 +63,7 @@ namespace hse_covid19_appointment_func
             string countyUuid = "f961fbee-ee98-4ce3-be47-1319876fe47c";
             dynamic facilities = JsonConvert.DeserializeObject(GetCountyFacilities(countyUuid));
             facilities = facilities["data"];
-            SendAppointments(facilities, telegramChatId, log);
+            SendAppointments(facilities, telegramChatId);
         }
 
         [FunctionName("Dublin")]
@@ -73,7 +73,7 @@ namespace hse_covid19_appointment_func
             string countyUuid = "446b0e00-ee77-435c-b83b-afb6dd469551";
             dynamic facilities = JsonConvert.DeserializeObject(GetCountyFacilities(countyUuid));
             facilities = facilities["data"];
-            SendAppointments(facilities, telegramChatId, log);
+            SendAppointments(facilities, telegramChatId);
         }
 
         [FunctionName("Galway")]
@@ -83,7 +83,7 @@ namespace hse_covid19_appointment_func
             string countyUuid = "b7725be0-10a9-4113-8aae-3a5a92f5e150";
             dynamic facilities = JsonConvert.DeserializeObject(GetCountyFacilities(countyUuid));
             facilities = facilities["data"];
-            SendAppointments(facilities, telegramChatId, log);
+            SendAppointments(facilities, telegramChatId);
         }
 
         [FunctionName("Kerry")]
@@ -93,7 +93,7 @@ namespace hse_covid19_appointment_func
             string countyUuid = "b15b0c8e-a727-425f-b714-8fea314a4f50";
             dynamic facilities = JsonConvert.DeserializeObject(GetCountyFacilities(countyUuid));
             facilities = facilities["data"];
-            SendAppointments(facilities, telegramChatId, log);
+            SendAppointments(facilities, telegramChatId);
         }
 
         [FunctionName("Kildare")]
@@ -103,18 +103,132 @@ namespace hse_covid19_appointment_func
             string countyUuid = "4a994c3c-2725-4b16-906b-d9be4d9004bc";
             dynamic facilities = JsonConvert.DeserializeObject(GetCountyFacilities(countyUuid));
             facilities = facilities["data"];
-            SendAppointments(facilities, telegramChatId, log);
+            SendAppointments(facilities, telegramChatId);
         }
 
-        //[FunctionName("")]
-        //public async Task RunAsync([TimerTrigger("*/10 * * * * *")] TimerInfo myTimer, ILogger log)
-        //{
-        //    long telegramChatId = -;
-        //    string countyUuid = "";
-        //    dynamic facilities = JsonConvert.DeserializeObject(GetCountyFacilities(countyUuid));
-        //    facilities = facilities["data"];
-        //    SendAppointments(facilities, telegramChatId, log);
-        //}
+        [FunctionName("Kilkenny")]
+        public async Task RunKilkennyAsync([TimerTrigger("*/10 * * * * *")] TimerInfo myTimer, ILogger log)
+        {
+            long telegramChatId = -1001553101034;
+            string countyUuid = "af5d94d2-c27e-494a-a228-d03d4c2c2b9f";
+            dynamic facilities = JsonConvert.DeserializeObject(GetCountyFacilities(countyUuid));
+            facilities = facilities["data"];
+            SendAppointments(facilities, telegramChatId);
+        }
+
+        [FunctionName("Laois")]
+        public async Task RunLaoisAsync([TimerTrigger("*/10 * * * * *")] TimerInfo myTimer, ILogger log)
+        {
+            long telegramChatId = -1001707749370;
+            string countyUuid = "2f6b2415-76a6-4b29-8551-77ec19988a86";
+            dynamic facilities = JsonConvert.DeserializeObject(GetCountyFacilities(countyUuid));
+            facilities = facilities["data"];
+            SendAppointments(facilities, telegramChatId);
+        }
+
+        [FunctionName("Leitrim")]
+        public async Task RunLeitrimAsync([TimerTrigger("*/10 * * * * *")] TimerInfo myTimer, ILogger log)
+        {
+            long telegramChatId = -1001762557862;
+            string countyUuid = "2f6b2415-76a6-4b29-8551-77ec19988a86";
+            dynamic facilities = JsonConvert.DeserializeObject(GetCountyFacilities(countyUuid));
+            facilities = facilities["data"];
+            SendAppointments(facilities, telegramChatId);
+        }
+
+        [FunctionName("Limerick")]
+        public async Task RunLimerickAsync([TimerTrigger("*/10 * * * * *")] TimerInfo myTimer, ILogger log)
+        {
+            long telegramChatId = -1001722833810;
+            string countyUuid = "2f5eb9a3-ae8c-437e-aef7-bd2957be6a7e";
+            dynamic facilities = JsonConvert.DeserializeObject(GetCountyFacilities(countyUuid));
+            facilities = facilities["data"];
+            SendAppointments(facilities, telegramChatId);
+        }
+
+        [FunctionName("Longford")]
+        public async Task RunLongfordAsync([TimerTrigger("*/10 * * * * *")] TimerInfo myTimer, ILogger log)
+        {
+            long telegramChatId = -1001784391996;
+            string countyUuid = "40972358-e4a3-4a99-8f42-a2aee761a9f9";
+            dynamic facilities = JsonConvert.DeserializeObject(GetCountyFacilities(countyUuid));
+            facilities = facilities["data"];
+            SendAppointments(facilities, telegramChatId);
+        }
+
+
+        [FunctionName("Louth")]
+        public async Task RunLouthAsync([TimerTrigger("*/10 * * * * *")] TimerInfo myTimer, ILogger log)
+        {
+            long telegramChatId = -1001707749370;
+            string countyUuid = "b773371f-bb5d-405a-9c03-6ba94b0993df";
+            dynamic facilities = JsonConvert.DeserializeObject(GetCountyFacilities(countyUuid));
+            facilities = facilities["data"];
+            SendAppointments(facilities, telegramChatId);
+        }
+
+
+        [FunctionName("Mayo")]
+        public async Task RunMayoAsync([TimerTrigger("*/10 * * * * *")] TimerInfo myTimer, ILogger log)
+        {
+            long telegramChatId = -1001639680358;
+            string countyUuid = "63a79dd4-49e3-408b-bf61-0fae55c8917a";
+            dynamic facilities = JsonConvert.DeserializeObject(GetCountyFacilities(countyUuid));
+            facilities = facilities["data"];
+            SendAppointments(facilities, telegramChatId);
+        }
+
+
+        [FunctionName("Meath")]
+        public async Task RunMeathAsync([TimerTrigger("*/10 * * * * *")] TimerInfo myTimer, ILogger log)
+        {
+            long telegramChatId = -1001734558378;
+            string countyUuid = "3d3136b7-8893-4226-9f28-d06967022123";
+            dynamic facilities = JsonConvert.DeserializeObject(GetCountyFacilities(countyUuid));
+            facilities = facilities["data"];
+            SendAppointments(facilities, telegramChatId);
+        }
+
+        [FunctionName("Monaghan")]
+        public async Task RunMonaghanAsync([TimerTrigger("*/10 * * * * *")] TimerInfo myTimer, ILogger log)
+        {
+            long telegramChatId = -1001734558378;
+            string countyUuid = "d6fbc7ac-4a8b-4dba-874d-d939faf06ccb";
+            dynamic facilities = JsonConvert.DeserializeObject(GetCountyFacilities(countyUuid));
+            facilities = facilities["data"];
+            SendAppointments(facilities, telegramChatId);
+        }
+
+
+        [FunctionName("Offaly")]
+        public async Task RunOffalyAsync([TimerTrigger("*/10 * * * * *")] TimerInfo myTimer, ILogger log)
+        {
+            long telegramChatId = -1001749730700;
+            string countyUuid = "24abc3c6-5e28-49fe-99f8-f3d8118cae18";
+            dynamic facilities = JsonConvert.DeserializeObject(GetCountyFacilities(countyUuid));
+            facilities = facilities["data"];
+            SendAppointments(facilities, telegramChatId);
+        }
+
+        [FunctionName("Roscommon")]
+        public async Task RunRoscommonAsync([TimerTrigger("*/10 * * * * *")] TimerInfo myTimer, ILogger log)
+        {
+            long telegramChatId = -1001547538319;
+            string countyUuid = "ef236290-f45a-4353-869b-a66e25bd68ce";
+            dynamic facilities = JsonConvert.DeserializeObject(GetCountyFacilities(countyUuid));
+            facilities = facilities["data"];
+            SendAppointments(facilities, telegramChatId);
+        }
+
+        [FunctionName("Sligo")]
+        public async Task RunSligoAsync([TimerTrigger("*/10 * * * * *")] TimerInfo myTimer, ILogger log)
+        {
+            long telegramChatId = -1001705346469;
+            string countyUuid = "c4f8a8c2-8ec6-49e5-937d-e0b0e8ee7e6b";
+            dynamic facilities = JsonConvert.DeserializeObject(GetCountyFacilities(countyUuid));
+            facilities = facilities["data"];
+            SendAppointments(facilities, telegramChatId);
+        }
 
         [FunctionName("Tipperary")]
         public async Task RunTipperaryAsync([TimerTrigger("*/10 * * * * *")] TimerInfo myTimer, ILogger log)
@@ -123,7 +237,47 @@ namespace hse_covid19_appointment_func
             string countyUuid = "e2d27461-9dbc-43d1-878e-061a07fa2a25";
             dynamic facilities = JsonConvert.DeserializeObject(GetCountyFacilities(countyUuid));
             facilities = facilities["data"];
-            SendAppointments(facilities, telegramChatId, log);
+            SendAppointments(facilities, telegramChatId);
+        }
+
+        [FunctionName("Waterford")]
+        public async Task RunWaterfordAsync([TimerTrigger("*/10 * * * * *")] TimerInfo myTimer, ILogger log)
+        {
+            long telegramChatId = -1001507299218;
+            string countyUuid = "113db5f7-00b9-4e95-83b1-ff73c27317c8";
+            dynamic facilities = JsonConvert.DeserializeObject(GetCountyFacilities(countyUuid));
+            facilities = facilities["data"];
+            SendAppointments(facilities, telegramChatId);
+        }
+
+        [FunctionName("Wexford")]
+        public async Task RunWexfordAsync([TimerTrigger("*/10 * * * * *")] TimerInfo myTimer, ILogger log)
+        {
+            long telegramChatId = -1001568993414;
+            string countyUuid = "83ee9614-ec96-4720-9909-c9b6d8ddc616";
+            dynamic facilities = JsonConvert.DeserializeObject(GetCountyFacilities(countyUuid));
+            facilities = facilities["data"];
+            SendAppointments(facilities, telegramChatId);
+        }
+
+        [FunctionName("Westmeath")]
+        public async Task RunWestmeathAsync([TimerTrigger("*/10 * * * * *")] TimerInfo myTimer, ILogger log)
+        {
+            long telegramChatId = -1001597714902;
+            string countyUuid = "eb4cf636-821b-47f5-b940-f86231a1edec";
+            dynamic facilities = JsonConvert.DeserializeObject(GetCountyFacilities(countyUuid));
+            facilities = facilities["data"];
+            SendAppointments(facilities, telegramChatId);
+        }
+
+        [FunctionName("Wickow")]
+        public async Task RunWicklowAsync([TimerTrigger("*/10 * * * * *")] TimerInfo myTimer, ILogger log)
+        {
+            long telegramChatId = -1001703999022;
+            string countyUuid = "49d32785-ed2c-4a8b-ab14-585e089b2043";
+            dynamic facilities = JsonConvert.DeserializeObject(GetCountyFacilities(countyUuid));
+            facilities = facilities["data"];
+            SendAppointments(facilities, telegramChatId);
         }
 
         public static string GetCountyFacilities(string countryUuid)
@@ -152,7 +306,7 @@ namespace hse_covid19_appointment_func
             return response.Content;
         }
 
-        static async void SendAppointments(dynamic facilities, long telegramChatId, ILogger log)
+        static async void SendAppointments(dynamic facilities, long telegramChatId)
         {
             bool slotsAvailable;
             string telegramMessage;
@@ -236,7 +390,7 @@ namespace hse_covid19_appointment_func
                     }
                     else
                     {
-                        log.LogInformation($"No slots available at centre: {facility["name"]}");
+                        Console.WriteLine($"No slots available at centre: {facility["name"]}");
                     }
                 }
             }
