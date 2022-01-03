@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host;
+using Microsoft.Azure.WebJobs.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using RestSharp;
@@ -9,15 +10,51 @@ using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 
+[assembly: WebJobsStartup(typeof(hse_covid19_appointment_func.GetCounties))]
 namespace hse_covid19_appointment_func
 {
+    public static object countiesObject;
+    public class GetCounties : IWebJobsStartup
+    {
+        public static object Configure(IWebJobsBuilder builder)
+        {
+            var client = new RestClient("https://covid19test.healthservice.ie/swiftflow.php");
+            client.Timeout = -1;
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("authority", "covid19test.healthservice.ie");
+            request.AddHeader("sec-ch-ua", "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"96\", \"Microsoft Edge\";v=\"96\"");
+            request.AddHeader("accept", "application/json, text/plain, */*");
+            request.AddHeader("content-type", "application/json");
+            request.AddHeader("sec-ch-ua-mobile", "?0");
+            client.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.62";
+            request.AddHeader("sec-ch-ua-platform", "\"Windows\"");
+            request.AddHeader("origin", "https://covid19test.healthservice.ie");
+            request.AddHeader("sec-fetch-site", "same-origin");
+            request.AddHeader("sec-fetch-mode", "cors");
+            request.AddHeader("sec-fetch-dest", "empty");
+            request.AddHeader("referer", "https://covid19test.healthservice.ie/hse-self-referral/select-county/");
+            request.AddHeader("accept-language", "en-GB,en;q=0.9,en-US;q=0.8");
+            var body = @"{""task"":""getCountiesInFacility"",""flow"":""routine""}";
+            request.AddParameter("application/json", body, ParameterType.RequestBody);
+            IRestResponse response = client.Execute(request);
+            var countiesObject = JsonConvert.DeserializeObject(response.Content);
+
+            return countiesObject;
+        }
+
+        void IWebJobsStartup.Configure(IWebJobsBuilder builder)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     public class CheckAppointments
     {
         public static ITelegramBotClient BotClient;
         public static ILogger log;
 
         [FunctionName("Carlow")]
-        public async Task RunCarlowAsync([TimerTrigger("*/10 * * * * *")] TimerInfo myTimer, ILogger log)
+        public async Task RunCarlowAsync([TimerTrigger("*/10 * * * * *")] TimerInfo myTimer, ILogger log, Object countiesObject)
         {
             long telegramChatId = -1001735840790;
             string countyUuid = "78306a67-6c14-11ec-9787-02fd315c6b27";
@@ -279,30 +316,6 @@ namespace hse_covid19_appointment_func
             facilities = facilities["data"];
             SendAppointments(facilities, telegramChatId);
         }
-        
-        public static string GetCounties()
-        {
-            var client = new RestClient("https://covid19test.healthservice.ie/swiftflow.php");
-            client.Timeout = -1;
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("authority", "covid19test.healthservice.ie");
-            request.AddHeader("sec-ch-ua", "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"96\", \"Microsoft Edge\";v=\"96\"");
-            request.AddHeader("accept", "application/json, text/plain, */*");
-            request.AddHeader("content-type", "application/json");
-            request.AddHeader("sec-ch-ua-mobile", "?0");
-            client.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.62";
-            request.AddHeader("sec-ch-ua-platform", "\"Windows\"");
-            request.AddHeader("origin", "https://covid19test.healthservice.ie");
-            request.AddHeader("sec-fetch-site", "same-origin");
-            request.AddHeader("sec-fetch-mode", "cors");
-            request.AddHeader("sec-fetch-dest", "empty");
-            request.AddHeader("referer", "https://covid19test.healthservice.ie/hse-self-referral/select-county/");
-            request.AddHeader("accept-language", "en-GB,en;q=0.9,en-US;q=0.8");
-            var body = @"{""task"":""getCountiesInFacility"",""flow"":""routine""}";
-            request.AddParameter("application/json", body, ParameterType.RequestBody);
-            IRestResponse response = client.Execute(request);
-            return response.Content;
-        }
         public static string GetCountyFacilities(string countryUuid)
         {
             var client = new RestClient("https://covid19test.healthservice.ie/swiftflow.php");
@@ -339,7 +352,7 @@ namespace hse_covid19_appointment_func
 
 
             // Send Telegram message
-            BotClient = new TelegramBotClient("BOT_API_TOKEN_HERE");
+            BotClient = new TelegramBotClient("5065545839:AAE6z8TG5qv-S-pjHAD70tGlw8vZKBrixyU");
             telegramMessage = $"";
 
 
